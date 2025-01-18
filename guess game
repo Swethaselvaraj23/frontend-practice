@@ -1,0 +1,53 @@
+ index.html
+<!--GUESS THE NUMBER PROJECT  --> 
+<link rel="stylesheet" href="style.css">
+<h1> guess the number </h1>
+<input id="guessnumber">
+<button onclick="check()">CHECK</button>
+<p id="result">Your Result </p>
+<p id="score">Score:10</p>
+<script> 
+    //selecting input box
+    var guessnumber = document.getElementById("guessnumber")
+    var result = document.getElementById("result")
+    var score=document.getElementById("score")
+    var randomNumber = Math.floor(Math.random()*10)+1 
+    var totalscore=10
+    function check()
+    {
+        var enterednumber = guessnumber.value
+        if(randomNumber==enterednumber)
+        {
+            console.log("YOUR RIGHT!!!✨")
+            result.textContent="YOUR RIGHT!!!✨"
+            alert("YOUR RIGHT!!!✨ YOU WON")
+        }
+        else{
+            totalscore=totalscore-1
+            score.textContent="score:"+totalscore
+            result.textContent="OPPS! YOUR WRONG ,BETTER LUCK NEXT TIME"
+        }
+
+    }
+</script>
+style.css
+*{
+    color:black;
+    background-color: lavenderblush;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+#l{
+    color:lightcoral;
+}
+h1{
+    color: lightcoral;
+}
+button{
+    color: black;
+    background-color: lightcoral;
+    transition-duration: 0.4s;
+}
+button:hover{
+    background-color:lightseagreen ;
+}
