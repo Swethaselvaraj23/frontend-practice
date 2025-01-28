@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JavaScript Menu Driven Operators</title>
+    <style>
+        #operations { display: none; padding: 20px; }
+        input { 
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input:focus {
+            background-color: #e6f7ff;
+            border-color: #40a9ff;
+            outline: none;
+        }
+        button {
+            color: black;
+            background-color: aquamarine;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: cornflowerblue;
+        }
+        body {
+            background-color: #ccc;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Menu Driven Operators Example</h1>
+    
+    <label for="operation">Choose an operation:</label>
+    <select id="operation" onchange="showOperationInputs()">
+        <option value="">Select...</option>
+        <option value="addition">Addition</option>
+        <option value="subtraction">Subtraction</option>
+        <option value="multiplication">Multiplication</option>
+        <option value="division">Division</option>
+        <option value="comparison">Comparison</option>
+    </select>
+    
+    <div id="operations">
+        <div id="additionInputs">
+            <label for="add1">Enter the first number for addition:</label>
+            <input type="number" id="add1" name="add1">
+            <label for="add2">Enter the second number for addition:</label>
+            <input type="number" id="add2" name="add2">
+            <p id="additionResult"></p><br>
+        </div>
+        
+        <div id="subtractionInputs">
+            <label for="sub1">Enter the first number for subtraction:</label>
+            <input type="number" id="sub1" name="sub1">
+            <label for="sub2">Enter the second number for subtraction:</label>
+            <input type="number" id="sub2" name="sub2">
+            <p id="subtractionResult"></p><br>
+        </div>
+        
+        <div id="multiplicationInputs">
+            <label for="mul1">Enter the first number for multiplication:</label>
+            <input type="number" id="mul1" name="mul1">
+            <label for="mul2">Enter the second number for multiplication:</label>
+            <input type="number" id="mul2" name="mul2">
+            <p id="multiplicationResult"></p><br>
+        </div>
+        
+        <div id="divisionInputs">
+            <label for="div1">Enter the first number for division:</label>
+            <input type="number" id="div1" name="div1">
+            <label for="div2">Enter the second number for division:</label>
+            <input type="number" id="div2" name="div2">
+            <p id="divisionResult"></p><br>
+        </div>
+        
+        <div id="comparisonInputs">
+            <label for="comp1">Enter the first number for comparison:</label>
+            <input type="number" id="comp1" name="comp1">
+            <label for="comp2">Enter the second number for comparison:</label>
+            <input type="number" id="comp2" name="comp2">
+            <p id="comparisonResult"></p><br>
+        </div>
+    </div>
+    
+    <button id="calculateButton">Calculate</button>
+
+    <script>
+        document.getElementById("operation").addEventListener("change", function() {
+            document.getElementById("operations").style.display = "block";
+            let operation = document.getElementById("operation").value;
+            document.getElementById("additionInputs").style.display = "none";
+            document.getElementById("subtractionInputs").style.display = "none";
+            document.getElementById("multiplicationInputs").style.display = "none";
+            document.getElementById("divisionInputs").style.display = "none";
+            document.getElementById("comparisonInputs").style.display = "none";
+
+            if (operation === "addition") {
+                document.getElementById("additionInputs").style.display = "block";
+            } else if (operation === "subtraction") {
+                document.getElementById("subtractionInputs").style.display = "block";
+            } else if (operation === "multiplication") {
+                document.getElementById("multiplicationInputs").style.display = "block";
+            } else if (operation === "division") {
+                document.getElementById("divisionInputs").style.display = "block";
+            } else if (operation === "comparison") {
+                document.getElementById("comparisonInputs").style.display = "block";
+            }
+        });
+
+        document.getElementById("calculateButton").addEventListener("click", function() {
+            let operation = document.getElementById("operation").value;
+
+            if (operation === "addition") {
+                let add1 = parseFloat(document.getElementById("add1").value);
+                let add2 = parseFloat(document.getElementById("add2").value);
+                let addition = add1 + add2;
+                document.getElementById("additionResult").innerHTML = "Addition Result: " + addition;
+
+            } else if (operation === "subtraction") {
+                let sub1 = parseFloat(document.getElementById("sub1").value);
+                let sub2 = parseFloat(document.getElementById("sub2").value);
+                let subtraction = sub1 - sub2;
+                document.getElementById("subtractionResult").innerHTML = "Subtraction Result: " + subtraction;
+
+            } else if (operation === "multiplication") {
+                let mul1 = parseFloat(document.getElementById("mul1").value);
+                let mul2 = parseFloat(document.getElementById("mul2").value);
+                let multiplication = mul1 * mul2;
+                document.getElementById("multiplicationResult").innerHTML = "Multiplication Result: " + multiplication;
+
+            } else if (operation === "division") {
+                let div1 = parseFloat(document.getElementById("div1").value);
+                let div2 = parseFloat(document.getElementById("div2").value);
+                let division = div1 / div2;
+                document.getElementById("divisionResult").innerHTML = "Division Result: " + division;
+
+            } else if (operation === "comparison") {
+    let comp1 = parseFloat(document.getElementById("comp1").value);
+    let comp2 = parseFloat(document.getElementById("comp2").value);
+
+    // Validate input
+    if (isNaN(comp1) || isNaN(comp2)) {
+        document.getElementById("comparisonResult").innerHTML = "Please enter valid numbers for comparison.";
+        return;
+    }
+
+    // Prioritize and construct the most specific comparison result
+    let comparisonResultText = "Comparison Results: <br>";
+
+    if (comp1 == comp2) {
+        comparisonResultText += `${comp1} is equal to ${comp2} <br>`;
+    } else if (comp1 > comp2) {
+        comparisonResultText += `${comp1} is greater than ${comp2} <br>`;
+    } else if (comp1 < comp2) {
+        comparisonResultText += `${comp1} is less than ${comp2} <br>`;
+    }
+
+    // Display the result
+    document.getElementById("comparisonResult").innerHTML = comparisonResultText;
+}
+
+
+}
+
+            
+        );
+    </script>
+</body>
+</html>
